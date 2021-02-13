@@ -39,10 +39,10 @@ public class ExtraPotions
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.LONG_REGENERATION, Items.HONEY_BOTTLE, EPPotions.LONG_HEALTH_BOOST));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.STRONG_REGENERATION, Items.HONEY_BOTTLE, EPPotions.STRONG_HEALTH_BOOST));
         
-        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.HEALING, Items.BONE, EPPotions.ABSORPTION));
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.HEALING, Items.HONEY_BOTTLE, EPPotions.ABSORPTION));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.ABSORPTION, Items.REDSTONE, EPPotions.LONG_ABSORPTION));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.ABSORPTION, Items.GLOWSTONE_DUST, EPPotions.STRONG_ABSORPTION));
-        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.STRONG_HEALING, Items.BONE, EPPotions.STRONG_ABSORPTION));
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.STRONG_HEALING, Items.HONEY_BOTTLE, EPPotions.STRONG_ABSORPTION));
         
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(Potions.THICK, Items.PRISMARINE_CRYSTALS, EPPotions.GLOWING));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.GLOWING, Items.REDSTONE, EPPotions.LONG_GLOWING));
