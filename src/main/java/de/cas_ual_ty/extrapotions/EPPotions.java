@@ -45,6 +45,9 @@ public class EPPotions
     public static final Potion WITHER = null;
     public static final Potion LONG_WITHER = null;
     public static final Potion STRONG_WITHER = null;
+    public static final Potion HUNGRY_GIANT = null;
+    public static final Potion LONG_HUNGRY_GIANT = null;
+    public static final Potion STRONG_HUNGRY_GIANT = null;
     
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event)
@@ -82,5 +85,8 @@ public class EPPotions
         event.getRegistry().register(new Potion("wither", new EffectInstance(Effects.WITHER, 900)).setRegistryName(ExtraPotions.MOD_ID, "wither"));
         event.getRegistry().register(new Potion("wither", new EffectInstance(Effects.WITHER, 1800)).setRegistryName(ExtraPotions.MOD_ID, "long_wither"));
         event.getRegistry().register(new Potion("wither", new EffectInstance(Effects.WITHER, 450, 1)).setRegistryName(ExtraPotions.MOD_ID, "strong_wither"));
+        event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 3600, 2), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 3600, 2), new EffectInstance(Effects.HUNGER, 3600, 3), new EffectInstance(Effects.SLOWNESS, 3600, 3)).setRegistryName(ExtraPotions.MOD_ID, "hungry_giant"));
+        event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 9600, 2), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 9600, 2), new EffectInstance(Effects.HUNGER, 9600, 3), new EffectInstance(Effects.SLOWNESS, 9600, 3)).setRegistryName(ExtraPotions.MOD_ID, "long_hungry_giant"));
+        event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 3600, 3), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 3600, 3), new EffectInstance(Effects.HUNGER, 3600, 5), new EffectInstance(Effects.SLOWNESS, 3600, 5)).setRegistryName(ExtraPotions.MOD_ID, "strong_hungry_giant"));
     }
 }
