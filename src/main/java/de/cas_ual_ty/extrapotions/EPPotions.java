@@ -48,6 +48,9 @@ public class EPPotions
     public static final Potion HUNGRY_GIANT = null;
     public static final Potion LONG_HUNGRY_GIANT = null;
     public static final Potion STRONG_HUNGRY_GIANT = null;
+    public static final Potion HEAD_MONK = null;
+    public static final Potion LONG_HEAD_MONK = null;
+    public static final Potion STRONG_HEAD_MONK = null;
     
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event)
@@ -88,5 +91,8 @@ public class EPPotions
         event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 3600, 2), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 3600, 2), new EffectInstance(Effects.HUNGER, 3600, 3), new EffectInstance(Effects.SLOWNESS, 3600, 3)).setRegistryName(ExtraPotions.MOD_ID, "hungry_giant"));
         event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 9600, 2), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 9600, 2), new EffectInstance(Effects.HUNGER, 9600, 3), new EffectInstance(Effects.SLOWNESS, 9600, 3)).setRegistryName(ExtraPotions.MOD_ID, "long_hungry_giant"));
         event.getRegistry().register(new Potion("hungry_giant", new EffectInstance(Effects.HEALTH_BOOST, 3600, 3), new EffectInstance(EPEffects.KNOCKBACK_RESISTANCE, 3600, 3), new EffectInstance(Effects.HUNGER, 3600, 5), new EffectInstance(Effects.SLOWNESS, 3600, 5)).setRegistryName(ExtraPotions.MOD_ID, "strong_hungry_giant"));
+        event.getRegistry().register(new Potion("head_monk", new EffectInstance(Effects.STRENGTH, 3600, 2), new EffectInstance(Effects.BLINDNESS, 3600)).setRegistryName(ExtraPotions.MOD_ID, "head_monk"));
+        event.getRegistry().register(new Potion("head_monk", new EffectInstance(Effects.STRENGTH, 9600, 2), new EffectInstance(Effects.BLINDNESS, 9600)).setRegistryName(ExtraPotions.MOD_ID, "long_head_monk"));
+        event.getRegistry().register(new Potion("head_monk", new EffectInstance(Effects.STRENGTH, 1800, 3), new EffectInstance(Effects.BLINDNESS, 1800)).setRegistryName(ExtraPotions.MOD_ID, "strong_head_monk"));
     }
 }
