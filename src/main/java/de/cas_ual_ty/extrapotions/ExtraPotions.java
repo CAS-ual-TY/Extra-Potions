@@ -91,6 +91,11 @@ public class ExtraPotions
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.HUNGRY_GIANT, Items.GLOWSTONE_DUST, EPPotions.STRONG_HUNGRY_GIANT));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.LONG_HEALTH_BOOST, Items.BONE, EPPotions.LONG_HUNGRY_GIANT));
         BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.STRONG_HEALTH_BOOST, Items.BONE, EPPotions.STRONG_HUNGRY_GIANT));
+        
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.BLINDNESS, Items.BLAZE_POWDER, EPPotions.HEAD_MONK));
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.HEAD_MONK, Items.REDSTONE, EPPotions.LONG_HEAD_MONK));
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.HEAD_MONK, Items.GLOWSTONE_DUST, EPPotions.STRONG_HEAD_MONK));
+        BrewingRecipeRegistry.addRecipe(new EPBrewingRecipe(EPPotions.LONG_BLINDNESS, Items.BLAZE_POWDER, EPPotions.LONG_HEAD_MONK));
     }
     
     private void playerInteract(PlayerInteractEvent.EntityInteract event)
