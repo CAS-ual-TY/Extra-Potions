@@ -14,6 +14,8 @@ public class EPPotions
 {
     public static final Potion BLINDNESS = null;
     public static final Potion LONG_BLINDNESS = null;
+    public static final Potion LEVITATION = null;
+    public static final Potion LONG_LEVITATION = null;
     public static final Potion NAUSEA = null;
     public static final Potion LONG_NAUSEA = null;
     public static final Potion HEALTH_BOOST = null;
@@ -51,12 +53,14 @@ public class EPPotions
     public static final Potion HEAD_MONK = null;
     public static final Potion LONG_HEAD_MONK = null;
     public static final Potion STRONG_HEAD_MONK = null;
-    
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event)
     {
         event.getRegistry().register(new Potion("blindness", new EffectInstance(Effects.BLINDNESS, 900)).setRegistryName(ExtraPotions.MOD_ID, "blindness"));
         event.getRegistry().register(new Potion("blindness", new EffectInstance(Effects.BLINDNESS, 1800)).setRegistryName(ExtraPotions.MOD_ID, "long_blindness"));
+        event.getRegistry().register(new Potion("levitation", new EffectInstance(Effects.LEVITATION, 900)).setRegistryName(ExtraPotions.MOD_ID, "levitation"));
+        event.getRegistry().register(new Potion("levitation", new EffectInstance(Effects.LEVITATION, 1800)).setRegistryName(ExtraPotions.MOD_ID, "long_levitation"));
         event.getRegistry().register(new Potion("nausea", new EffectInstance(Effects.NAUSEA, 900)).setRegistryName(ExtraPotions.MOD_ID, "nausea"));
         event.getRegistry().register(new Potion("nausea", new EffectInstance(Effects.NAUSEA, 1800)).setRegistryName(ExtraPotions.MOD_ID, "long_nausea"));
         event.getRegistry().register(new Potion("health_boost", new EffectInstance(Effects.HEALTH_BOOST, 900)).setRegistryName(ExtraPotions.MOD_ID, "health_boost"));
