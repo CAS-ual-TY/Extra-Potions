@@ -21,10 +21,9 @@ public class MilkBottleItem extends MilkBucketItem
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entityLiving)
     {
-        ItemStack fakeMilk = new ItemStack(Items.MILK_BUCKET);
-        
         if(!level.isClientSide)
         {
+            ItemStack fakeMilk = new ItemStack(Items.MILK_BUCKET);
             entityLiving.curePotionEffects(fakeMilk);
         }
         
