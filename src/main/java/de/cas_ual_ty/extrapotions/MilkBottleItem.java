@@ -1,41 +1,43 @@
 package de.cas_ual_ty.extrapotions;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MilkBucketItem;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MilkBucketItem;
+import net.minecraft.world.level.Level;
 
 public class MilkBottleItem extends MilkBucketItem
 {
-    public MilkBottleItem(Properties builder)
+    public MilkBottleItem(Item.Properties builder)
     {
         super(builder);
     }
     
     @Override
-    public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity entityLiving)
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entityLiving)
     {
-        if(!world.isClientSide)
+        ItemStack fakeMilk = new ItemStack(Items.MILK_BUCKET);
+        
+        if(!level.isClientSide)
         {
-            entityLiving.curePotionEffects(itemStack);
+            entityLiving.curePotionEffects(fakeMilk);
         }
         
-        if(entityLiving instanceof ServerPlayerEntity)
+        if(entityLiving instanceof ServerPlayer serverPlayer)
         {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, itemStack);
-            serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
         
-        if(entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).abilities.instabuild)
+        if(entityLiving instanceof Player player && !player.getAbilities().instabuild)
         {
             itemStack.shrink(1);
-            ((PlayerEntity) entityLiving).inventory.placeItemBackInInventory(world, new ItemStack(Items.GLASS_BOTTLE));
+            player.getInventory().placeItemBackInInventory(new ItemStack(Items.GLASS_BOTTLE));
         }
         
         return itemStack;

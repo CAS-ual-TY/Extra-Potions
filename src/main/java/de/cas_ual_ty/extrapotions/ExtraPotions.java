@@ -1,14 +1,14 @@
 package de.cas_ual_ty.extrapotions;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionBrewing;
-import net.minecraft.potion.Potions;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,7 +29,7 @@ public class ExtraPotions
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
         EPItems.register();
-        EPEffects.register();
+        EPMobEffects.register();
         EPPotions.register();
     }
     
@@ -106,9 +106,9 @@ public class ExtraPotions
         PotionBrewing.addMix(EPPotions.HEAD_MONK.get(), Items.GLOWSTONE_DUST, EPPotions.STRONG_HEAD_MONK.get());
         PotionBrewing.addMix(EPPotions.LONG_BLINDNESS.get(), Items.BLAZE_POWDER, EPPotions.LONG_HEAD_MONK.get());
         
-        for(Potion potion : ForgeRegistries.POTION_TYPES.getValues())
+        for(Potion potion : ForgeRegistries.POTIONS.getValues())
         {
-            for(EffectInstance effect : potion.getEffects())
+            for(MobEffectInstance effect : potion.getEffects())
             {
                 if(effect.isCurativeItem(new ItemStack(Items.MILK_BUCKET)))
                 {
@@ -123,11 +123,11 @@ public class ExtraPotions
     
     private void playerInteract(PlayerInteractEvent.EntityInteract event)
     {
-        if(!event.getWorld().isClientSide && event.getTarget().getType() == EntityType.COW && event.getTarget() instanceof CowEntity && !((AgeableEntity) event.getTarget()).isBaby() && event.getPlayer().getItemInHand(event.getHand()).getItem() == Items.GLASS_BOTTLE)
+        if(!event.getWorld().isClientSide && event.getTarget().getType() == EntityType.COW && event.getTarget() instanceof Cow && !((AgeableMob) event.getTarget()).isBaby() && event.getPlayer().getItemInHand(event.getHand()).getItem() == Items.GLASS_BOTTLE)
         {
-            event.getPlayer().inventory.placeItemBackInInventory(event.getWorld(), new ItemStack(EPItems.MILK_BOTTLE.get()));
+            event.getPlayer().getInventory().placeItemBackInInventory(new ItemStack(EPItems.MILK_BOTTLE.get()));
             
-            if(!event.getPlayer().abilities.instabuild)
+            if(!event.getPlayer().getAbilities().instabuild)
             {
                 event.getPlayer().getItemInHand(event.getHand()).shrink(1);
             }
