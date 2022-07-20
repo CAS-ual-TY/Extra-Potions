@@ -5,8 +5,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionBrewing;
 import net.minecraft.potion.Potions;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,10 +12,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(ExtraPotions.MOD_ID)
 public class ExtraPotions
@@ -105,20 +99,6 @@ public class ExtraPotions
         PotionBrewing.addMix(EPPotions.HEAD_MONK.get(), Items.REDSTONE, EPPotions.LONG_HEAD_MONK.get());
         PotionBrewing.addMix(EPPotions.HEAD_MONK.get(), Items.GLOWSTONE_DUST, EPPotions.STRONG_HEAD_MONK.get());
         PotionBrewing.addMix(EPPotions.LONG_BLINDNESS.get(), Items.BLAZE_POWDER, EPPotions.LONG_HEAD_MONK.get());
-        
-        for(Potion potion : ForgeRegistries.POTION_TYPES.getValues())
-        {
-            for(EffectInstance effect : potion.getEffects())
-            {
-                if(effect.isCurativeItem(new ItemStack(Items.MILK_BUCKET)))
-                {
-                    List<ItemStack> curativeItems = new ArrayList<>(effect.getCurativeItems().size() + 1);
-                    curativeItems.addAll(effect.getCurativeItems());
-                    curativeItems.add(new ItemStack(EPItems.MILK_BOTTLE.get()));
-                    effect.setCurativeItems(curativeItems);
-                }
-            }
-        }
     }
     
     private void playerInteract(PlayerInteractEvent.EntityInteract event)

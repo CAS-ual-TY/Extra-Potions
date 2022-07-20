@@ -22,7 +22,8 @@ public class MilkBottleItem extends MilkBucketItem
     {
         if(!world.isClientSide)
         {
-            entityLiving.curePotionEffects(itemStack);
+            ItemStack fakeMilk = new ItemStack(Items.MILK_BUCKET);
+            entityLiving.curePotionEffects(fakeMilk);
         }
         
         if(entityLiving instanceof ServerPlayerEntity)
