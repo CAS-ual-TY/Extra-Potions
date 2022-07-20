@@ -1,6 +1,6 @@
 modLoader="javafml"
-loaderVersion="[34,)"
-license="GNU General Public License v3.0"
+loaderVersion="[36,)"
+license="MIT License"
 issueTrackerURL="https://github.com/CAS-ual-TY/Extra-Potions/issues"
 
 [[mods]]
@@ -8,7 +8,7 @@ issueTrackerURL="https://github.com/CAS-ual-TY/Extra-Potions/issues"
     version="${file.jarVersion}"
     displayName="Extra Potions"
     displayURL="https://github.com/CAS-ual-TY/Extra-Potions"
-    #logoFile="logo.png"
+    logoFile="logo.png"
     credits="Mojang and the Minecraft Forge Team."
     authors="CAS_ual_TY"
     description="Makes almost all Minecraft effects available for brewing and adds new high-risk high-reward trade-off potions."

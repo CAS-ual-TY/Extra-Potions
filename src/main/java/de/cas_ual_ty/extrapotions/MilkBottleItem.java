@@ -18,28 +18,26 @@ public class MilkBottleItem extends MilkBucketItem
     }
     
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving)
+    public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity entityLiving)
     {
-        ItemStack milkFake = new ItemStack(Items.MILK_BUCKET);
-        
-        if(!worldIn.isRemote)
+        if(!world.isClientSide)
         {
-            entityLiving.curePotionEffects(milkFake);
+            entityLiving.curePotionEffects(itemStack);
         }
         
         if(entityLiving instanceof ServerPlayerEntity)
         {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)entityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
-            serverplayerentity.addStat(Stats.ITEM_USED.get(this));
+            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entityLiving;
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, itemStack);
+            serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
         }
         
-        if(entityLiving instanceof PlayerEntity && !((PlayerEntity)entityLiving).abilities.isCreativeMode)
+        if(entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).abilities.instabuild)
         {
-            stack.shrink(1);
-            ((PlayerEntity)entityLiving).inventory.placeItemBackInInventory(worldIn, new ItemStack(Items.GLASS_BOTTLE));
+            itemStack.shrink(1);
+            ((PlayerEntity) entityLiving).inventory.placeItemBackInInventory(world, new ItemStack(Items.GLASS_BOTTLE));
         }
         
-        return stack;
+        return itemStack;
     }
 }

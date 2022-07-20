@@ -6,8 +6,8 @@ import net.minecraft.potion.EffectType;
 public class EPEffect extends Effect
 {
     // Effect constructor is not public for some reason...
-    public EPEffect(EffectType typeIn, int liquidColorIn)
+    public EPEffect(EffectType type, int liquidColor)
     {
-        super(typeIn, liquidColorIn);
+        super(type, liquidColor);
     }
 }
