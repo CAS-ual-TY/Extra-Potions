@@ -1,6 +1,5 @@
 package de.cas_ual_ty.extrapotions;
 
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.item.ItemStack;
@@ -103,13 +102,13 @@ public class ExtraPotions
     
     private void playerInteract(PlayerInteractEvent.EntityInteract event)
     {
-        if(!event.getWorld().isClientSide && event.getTarget().getType() == EntityType.COW && event.getTarget() instanceof Cow && !((AgeableMob) event.getTarget()).isBaby() && event.getPlayer().getItemInHand(event.getHand()).getItem() == Items.GLASS_BOTTLE)
+        if(!event.getLevel().isClientSide && event.getTarget().getType() == EntityType.COW && event.getTarget() instanceof Cow cow && !cow.isBaby() && event.getEntity().getItemInHand(event.getHand()).getItem() == Items.GLASS_BOTTLE)
         {
-            event.getPlayer().getInventory().placeItemBackInInventory(new ItemStack(EPItems.MILK_BOTTLE.get()));
+            event.getEntity().getInventory().placeItemBackInInventory(new ItemStack(EPItems.MILK_BOTTLE.get()));
             
-            if(!event.getPlayer().getAbilities().instabuild)
+            if(!event.getEntity().getAbilities().instabuild)
             {
-                event.getPlayer().getItemInHand(event.getHand()).shrink(1);
+                event.getEntity().getItemInHand(event.getHand()).shrink(1);
             }
         }
     }
