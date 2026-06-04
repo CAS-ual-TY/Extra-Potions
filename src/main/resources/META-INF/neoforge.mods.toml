@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/CAS-ual-TY/Extra-Potions/issues"
+
+[[mods]]
+    modId="${mod_id}"
+    version="${mod_version}"
+    displayName="${mod_name}"
+    displayURL="https://github.com/CAS-ual-TY/Extra-Potions"
+    logoFile="logo.png"
+    credits="Mojang and the Minecraft Forge Team"
+    authors="CAS_ual_TY"
+    description='''Makes almost all Minecraft effects available for brewing and adds new high-risk high-reward trade-off potions.'''
+
+[[dependencies.${mod_id}]] #optional
+    modId="neoforge" #mandatory
+    type="required" #mandatory
+    versionRange="[${neo_version},)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+# Here's another dependency
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

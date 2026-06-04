@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MilkBucketItem;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.EffectCures;
 
 public class MilkBottleItem extends MilkBucketItem
 {
@@ -23,8 +24,7 @@ public class MilkBottleItem extends MilkBucketItem
     {
         if(!level.isClientSide)
         {
-            ItemStack fakeMilk = new ItemStack(Items.MILK_BUCKET);
-            entityLiving.curePotionEffects(fakeMilk);
+            entityLiving.removeEffectsCuredBy(EffectCures.MILK);
         }
         
         if(entityLiving instanceof ServerPlayer serverPlayer)

@@ -1,25 +1,28 @@
 package de.cas_ual_ty.extrapotions;
 
-import net.minecraft.world.effect.HealthBoostMobEffect;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class EPMobEffects
 {
-    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, ExtraPotions.MOD_ID);
+    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, ExtraPotions.MOD_ID);
     
-    public static final RegistryObject<MobEffect> HEALTH_REDUCTION = MOB_EFFECTS.register("health_reduction", () -> new HealthBoostMobEffect(MobEffectCategory.HARMFUL, 0x2C8265).addAttributeModifier(Attributes.MAX_HEALTH, "DEFFE3AE-979E-4E3D-96FE-E2B0BE26671C", -0.1D, AttributeModifier.Operation.MULTIPLY_BASE));
-    public static final RegistryObject<MobEffect> ARMOR = MOB_EFFECTS.register("armor", () -> new EPMobEffect(MobEffectCategory.BENEFICIAL, 0x888888).addAttributeModifier(Attributes.ARMOR, "68685544-A337-4959-B1AD-ACCE62A583BE", 4D, AttributeModifier.Operation.ADDITION));
-    public static final RegistryObject<MobEffect> KNOCKBACK_RESISTANCE = MOB_EFFECTS.register("knockback_resistance", () -> new EPMobEffect(MobEffectCategory.BENEFICIAL, 0x5C02DE).addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "0DDC9275-7E9A-4662-8D3F-D8DF344444E0", 0.15D, AttributeModifier.Operation.ADDITION));
+    public static final DeferredHolder<MobEffect, MobEffect> HEALTH_REDUCTION = MOB_EFFECTS.register("health_reduction", () -> new EPMobEffect(MobEffectCategory.HARMFUL, 0x2C8265).addAttributeModifier(Attributes.MAX_HEALTH, ResourceLocation.fromNamespaceAndPath(ExtraPotions.MOD_ID, "health_reduction"), -0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+    public static final DeferredHolder<MobEffect, MobEffect> ARMOR = MOB_EFFECTS.register("armor", () -> new EPMobEffect(MobEffectCategory.BENEFICIAL, 0x888888).addAttributeModifier(Attributes.ARMOR, ResourceLocation.fromNamespaceAndPath(ExtraPotions.MOD_ID, "armor"), 4D, AttributeModifier.Operation.ADD_VALUE));
+    public static final DeferredHolder<MobEffect, MobEffect> KNOCKBACK_RESISTANCE = MOB_EFFECTS.register("knockback_resistance", () -> new EPMobEffect(MobEffectCategory.BENEFICIAL, 0x5C02DE).addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, ResourceLocation.fromNamespaceAndPath(ExtraPotions.MOD_ID, "knockback_resistance"), 0.15D, AttributeModifier.Operation.ADD_VALUE));
     
-    public static void register()
+    public static void register(IEventBus modEventBus, ModContainer modContainer)
     {
-        MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        MOB_EFFECTS.register(modEventBus);
     }
 }
